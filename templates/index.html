@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crop Recommendation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5 p-4 bg-white rounded shadow">
+        <h2 class="mb-4 text-center text-success">🌾 Crop Recommendation System</h2>
+        
+        <!-- Crop Prediction Form -->
+        <form method="POST" action="/crop/predict">
+            <div class="row g-3">
+                <div class="col-md-4"><input type="number" step="any" name="N" class="form-control" placeholder="Nitrogen (N)" required></div>
+                <div class="col-md-4"><input type="number" step="any" name="P" class="form-control" placeholder="Phosphorus (P)" required></div>
+                <div class="col-md-4"><input type="number" step="any" name="K" class="form-control" placeholder="Potassium (K)" required></div>
+                <div class="col-md-4"><input type="number" step="any" name="temperature" class="form-control" placeholder="Temperature (°C)" required></div>
+                <div class="col-md-4"><input type="number" step="any" name="humidity" class="form-control" placeholder="Humidity (%)" required></div>
+                <div class="col-md-4"><input type="number" step="any" name="ph" class="form-control" placeholder="Soil pH" required></div>
+                <div class="col-md-4"><input type="number" step="any" name="rainfall" class="form-control" placeholder="Rainfall (mm)" required></div>
+            </div>
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-success">Predict Crop</button>
+            </div>
+        </form>
+
+        <!-- Ideal Conditions Form -->
+        <form method="POST" action="/crop/ideal_conditions" class="mt-5">
+            <h4 class="text-center">Get Ideal Soil Conditions for a Crop</h4>
+            <div class="mb-3">
+                <input type="text" name="crop_name" class="form-control" placeholder="Crop Name" required>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Get Ideal Conditions</button>
+            </div>
+        </form>
+
+        <!-- Display Prediction or Ideal Conditions Result -->
+        {% if prediction_text %}
+            <div class="alert alert-info text-center mt-4">{{ prediction_text }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
